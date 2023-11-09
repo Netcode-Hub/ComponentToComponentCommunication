@@ -1,0 +1,55 @@
+﻿@page "/"
+@using ComponentToComponentCommunication.Data
+@inject IProductService productService
+@implements IDisposable
+
+<div class="container mb-5">
+    <div class="row">
+        @if (Products.Count > 0)
+        { 
+            foreach (var item in Products)
+            {
+                <div class="col-auto m-2">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="gap-2">
+                                <span>@item.Name</span>
+                                <button class="btn btn-primary btn-sm" @onclick="()=> AddProduct(item)">Add</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+
+<button class="btn btn-primary m-3" @onclick="LoadData">Load Products</button>
+
+
+
+@code{
+    private List<Product> Products = new();
+    private void LoadData()
+    {
+        productService.LoadProducts();
+        Products = productService.Products;
+    }
+
+
+    private void AddProduct(Product model)
+    {
+        productService.AddToCart(model);
+    }
+
+
+    protected override void OnInitialized()
+    {
+        productService.ProductEvent += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        productService.ProductEvent -= StateHasChanged;
+    }
+}
