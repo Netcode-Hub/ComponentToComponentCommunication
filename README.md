@@ -1,5 +1,5 @@
 3 Ways of Blazor Components Communication (Parent to Child, Child To Parent & Component To Component). <br/>
-Component to Component Communication <br/>
+# Component to Component Communication <br/>
 https://youtu.be/SoPEj9LEBdY <br/>
 
 ![Screenshot 2023-11-09 125725](https://github.com/Netcode-Hub/ComponentToComponentCommunication/assets/110794348/4df3b159-7a73-4810-b952-47d1d6329f86)
